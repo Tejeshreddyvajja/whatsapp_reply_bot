@@ -15,20 +15,7 @@ headers = {
 
 # 🔹 User command input (chat history)
 command = '''
-[20:06, 7/7/2025] Tejesh Reddy: Hi
-[20:07, 7/7/2025] Tejesh Reddy: How are you?
-[20:07, 7/7/2025] Vanga: Nenu bane unnanu wbu?
-[20:07, 7/7/2025] Tejesh Reddy: all good
-[20:08, 7/7/2025] Tejesh Reddy: inka what else?
-ela avthunai studies?
-[20:08, 7/7/2025] Vanga: Yep bane undhi alll good 🫡
-[20:08, 7/7/2025] Tejesh Reddy: noice coding ela avthundi?
-[20:08, 7/7/2025] Vanga: Enjoying it recently
-[20:09, 7/7/2025] Vanga: It's good learning new stuff everyday
-[20:09, 7/7/2025] Tejesh Reddy: eppativaraku meeku holidays?
-[20:13, 7/7/2025] Vanga: Maku 14th varaku
-[20:13, 7/7/2025] Vanga: 14th clg start avthuindii 🫡 matter how many holidays we get its not enough 😂
-[20:13, 7/7/2025] Tejesh Reddy: true 😅😅
+#enter your chat to test the grok api and chatbot
 '''
 
 # 🔸 Send request to Groq API
