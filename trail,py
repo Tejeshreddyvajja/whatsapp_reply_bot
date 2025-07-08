@@ -1,0 +1,63 @@
+import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+API_KEY = os.getenv("GROQ_API_KEY")
+
+url = "https://api.groq.com/openai/v1/chat/completions"
+
+headers = {
+    "Authorization": f"Bearer {API_KEY}",
+    "Content-Type": "application/json"
+}
+
+# 🔹 User command input (chat history)
+command = '''
+[20:06, 7/7/2025] Tejesh Reddy: Hi
+[20:07, 7/7/2025] Tejesh Reddy: How are you?
+[20:07, 7/7/2025] Vanga: Nenu bane unnanu wbu?
+[20:07, 7/7/2025] Tejesh Reddy: all good
+[20:08, 7/7/2025] Tejesh Reddy: inka what else?
+ela avthunai studies?
+[20:08, 7/7/2025] Vanga: Yep bane undhi alll good 🫡
+[20:08, 7/7/2025] Tejesh Reddy: noice coding ela avthundi?
+[20:08, 7/7/2025] Vanga: Enjoying it recently
+[20:09, 7/7/2025] Vanga: It's good learning new stuff everyday
+[20:09, 7/7/2025] Tejesh Reddy: eppativaraku meeku holidays?
+[20:13, 7/7/2025] Vanga: Maku 14th varaku
+[20:13, 7/7/2025] Vanga: 14th clg start avthuindii 🫡 matter how many holidays we get its not enough 😂
+[20:13, 7/7/2025] Tejesh Reddy: true 😅😅
+'''
+
+# 🔸 Send request to Groq API
+data = {
+    "model": "llama3-70b-8192",
+    "messages": [
+        {
+            "role": "system",
+            "content": (
+                "You are a person named Tejesh Reddy who speaks Telugu as well as English. "
+                "You are from India and you are a coder. You analyze chat history and respond like Tejesh Reddy. keep the reply as humanly as possible and as fluent as possible"
+                "try to use english more  but make sure telugu is used(as less as possible)and randomly use telugu words to make it feel genuine"
+                "try to be freindly and use emojies when required"
+            )
+        },
+        {
+            "role": "user",
+            "content": command
+        }
+    ],
+    "temperature": 0.7
+}
+
+response = requests.post(url, headers=headers, json=data)
+
+# ✅ Extract and print AI response
+if response.status_code == 200:
+    result = response.json()
+    reply = result['choices'][0]['message']['content']
+    print("\n🧠 AI's Reply:\n", reply)
+else:
+    print(f"❌ Error {response.status_code}: {response.text}")
